@@ -1,0 +1,26 @@
+package br.com.fiap.test;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
+public class CollectionSet {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	Set<String> cargos = new HashSet<String>();
+		
+		//Aceitando dados duplicados
+		
+		cargos.add("DBA");
+		cargos.add("Estagiario");
+		cargos.add("Desenvolvedor");
+		cargos.add("Suporte");
+		cargos.add("DBA");
+		System.out.println(cargos);
+	}
+		
+	}
+
+
