@@ -1,0 +1,88 @@
+package br.com.fiap.test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+
+import br.com.fiap.bean.Acessorio;
+import br.com.fiap.bean.Veiculo;
+
+public class Teste {
+
+	//A
+	public static double vlTotal(List<Veiculo> lista){
+
+		double guardaValor = 0;
+
+		for (Veiculo v : lista){
+			guardaValor =+ lista.size();
+		}
+
+		return guardaValor;
+	}
+	
+	//B
+
+	public static void main(String[] args) {
+
+		Veiculo objV = new Veiculo();
+
+
+		int i = Integer.parseInt(JOptionPane.showInputDialog("Quantos veiculos ? "));
+
+		while(i == 5){
+			if(i == 5){
+				
+				List<Veiculo> veiculo = new ArrayList<Veiculo>();
+
+				objV.setAno(JOptionPane.showInputDialog("Digite o ano do veiculo"));
+				objV.setModelo(JOptionPane.showInputDialog("Digite o modeo do veiculo"));
+				objV.setMontadora(JOptionPane.showInputDialog("Digite o nome da montadora"));
+
+				veiculo.add(objV);
+
+			}else{
+				System.out.println("Somente 5");
+				break;
+
+			}
+
+			i++;
+		}
+
+
+		int c = Integer.parseInt(JOptionPane.showInputDialog(" Quantos acessorios deseja cadastrar um acessorio ?"));
+
+		do{
+			if(c <= 3){
+				List<Acessorio> Ac = new ArrayList<Acessorio>();
+
+				Acessorio ac = new Acessorio();
+
+				ac.setDescricao(JOptionPane.showInputDialog("Digite a descrição"));
+				ac.setValor(Double.parseDouble(JOptionPane.showInputDialog("Digite o valor")));
+				Ac.add(ac);
+
+				//Colocando acessorios no veiculo
+				objV.setAcessorio(Ac);
+
+				for (Acessorio ace : Ac) {
+
+					System.out.println(ace.getDescricao());
+					System.out.println(ace.getValor());
+
+				}
+
+			}else{
+				System.out.println("Apenas 3 acessorio");
+			}
+
+			c++;
+
+		}while(c < 3);
+
+	}
+
+}
+

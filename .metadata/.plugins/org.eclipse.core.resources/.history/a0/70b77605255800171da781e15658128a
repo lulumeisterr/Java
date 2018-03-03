@@ -1,0 +1,22 @@
+package br.com.fiap.beans;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class TestandoConexao {
+
+	public static void main(String[] args) {
+
+		
+		Connection conexao = null;
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		conexao = DriverManager.getConnection(url,"curso_java","schema");
+		System.out.println("Abriu conexao");
+		conexao.close();
+		
+		
+		
+	}
+
+	
+}

@@ -1,0 +1,39 @@
+package br.com.fiap.teste;
+
+import javax.swing.JOptionPane;
+
+public class NOVO_TESTE_COM_TODO_O_CRUD {
+
+	public static void main(String[] args) {
+
+		
+		String verificar = JOptionPane.showInputDialog(" Você deseja relizar | [ C ] - Consulta | "
+																			+ "[ I ] - Inserir "
+																			+ "[ U ] - Atualizar | "
+																			+ "[ D ] - Deletar");
+
+		do{
+			
+			if(verificar.equals("C")){
+				
+				
+				
+			}else
+				if(verificar.equals("I")){
+					
+					
+
+				}else
+					if(verificar.equals("U")){
+						
+					}else
+						if(verificar.equals("E")){
+							
+						}
+			
+			
+		}while(verificar != "C" || verificar != "I" || verificar != "U" || verificar != "D");
+		
+		
+	}
+}

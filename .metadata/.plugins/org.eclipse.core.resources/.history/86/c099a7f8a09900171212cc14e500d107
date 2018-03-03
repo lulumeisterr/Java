@@ -1,0 +1,30 @@
+package br.com.fiap.teste2_COM_BO_CLIENTE;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+
+import br.com.fiap.BO.ClienteBO;
+import br.com.fiap.bean.Cliente;
+
+public class Consultando_estrela_bo {
+
+	public static void main(String[] args) {
+	
+		try{
+			
+			List<Cliente> PorNivel = new ArrayList<Cliente>();
+			PorNivel = ClienteBO.consultarPorNivel(Integer.parseInt(JOptionPane.showInputDialog("Digite a qtd de estela")));
+			
+			for (Cliente c : PorNivel) {
+				
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+
+}

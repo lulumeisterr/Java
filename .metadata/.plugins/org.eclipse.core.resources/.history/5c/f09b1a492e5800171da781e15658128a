@@ -1,0 +1,13 @@
+package br.com.fiap.magica;
+
+import javax.swing.JOptionPane;
+
+public class Magica {
+
+	
+	public static int Numero(String msg){
+		return Integer.parseInt(JOptionPane.showInputDialog(msg));
+	}
+	
+	
+}

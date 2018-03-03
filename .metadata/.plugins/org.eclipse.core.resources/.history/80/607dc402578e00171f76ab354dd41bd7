@@ -1,0 +1,47 @@
+package br.com.fiap.BO;
+
+import br.com.fiap.DAO.TelefoneDAO;
+import br.com.fiap.bean.Telefone;
+
+public class TelefoneBO {
+
+	
+	public static String InserscaoTelefone(Telefone t , int numero)throws Exception{
+		
+		if(t.getDdd() < 2){
+			return "DDD INVALIDO";
+		}
+		
+		if(numero <= 0){
+			return "Digito do telefone invalido";
+		}
+		
+		if(t.getOperadora().equals("") || t.getOperadora().trim().length() >= 10){
+			return "Campo em branco Ou Caracter invalido";
+		}
+		
+		
+		
+		TelefoneDAO tDAO = new TelefoneDAO();
+		String msg = tDAO.inserir(t, numero);
+		tDAO.fechar();
+		return msg;
+	}
+	
+	
+	public static String consultarPorOperadora(String fone)throws Exception{
+		
+		TelefoneDAO tDAO = new TelefoneDAO();
+		Telefone t = new Telefone();
+		
+		if(t.getOperadora().equals("") || t.getOperadora().trim().length() < 5){
+			return "Campo Vazio ou excedeu o limite de caracter ";
+		}
+		
+		String msg = tDAO.consultarPorOperadora(fone);
+		tDAO.fechar();
+		
+		return msg;
+	}
+	
+}

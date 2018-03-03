@@ -1,0 +1,17 @@
+package br.com.fiap.teste;
+
+public class GravandoSeparado {
+
+	static String gravarArq(Produto p)throws Exception{
+		
+		
+		return "Gravadp";
+		
+	}
+	
+	public static void main(String[] args) {
+		
+
+	}
+
+}

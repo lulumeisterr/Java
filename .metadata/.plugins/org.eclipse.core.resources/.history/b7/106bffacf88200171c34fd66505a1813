@@ -1,0 +1,27 @@
+package br.com.fiap.teste;
+
+import br.com.fiap.DAO.ClienteDAO;
+import br.com.fiap.bean.Cliente;
+
+public class DELETANDO_UM_CLIENTE_POR_COD {
+
+	public static void main(String[] args) {
+		
+		
+		Cliente objC = new Cliente();
+		ClienteDAO dao = null;
+		
+		try{
+		dao = new ClienteDAO();
+		objC.setNumero(45);
+		
+		System.out.println();
+			
+		}catch(Exception e){
+			
+			e.printStackTrace();
+		}
+
+	}
+
+}

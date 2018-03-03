@@ -1,0 +1,40 @@
+package br.com.fiap.BO;
+
+import br.com.fiap.DAO.ProdutoDAO;
+import br.com.fiap.bean.Produto;
+
+public class ProdutoBO {
+	
+	
+	//Adicionando um novo produto
+	
+	public static String novoProduto(Produto p)throws Exception{
+		
+		
+		if(p.getDsProduto().equals(null)){
+			return "Deve possuir Descrição";
+		}
+		
+		if(p.getDsProduto() <5 || p.getDsProduto() > 50){
+			
+			return "Valores insuficiente";
+		}
+		
+		if(p.getCdProduto() == false){
+			return "Codigo do produto nao encontrado";
+		}
+		
+		if(p.getValor() < 0){
+			return "O valor deve ser maior que 0";
+		}
+		
+		ProdutoDAO dao = new ProdutoDAO();
+		String msg = dao.addProd(p);
+		dao.FecharConexao();
+		
+		return 
+		
+	}
+	
+
+}

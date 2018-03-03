@@ -1,0 +1,208 @@
+package br.com.fiap.bean;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
+public class ClienteApp {
+
+	static String  url = "jdbc:oracle:thin:@localhost:1521:xe";
+	static String usuario = "curso_java";
+	static String senha= "schema";
+	static Connection conexao;
+
+
+	public static void connectar()throws SQLException{
+
+		conexao = DriverManager.getConnection(url,"curso_java","schema");
+		conexao.setAutoCommit(false);
+		
+		
+	}
+
+	public static void Desconcetar()throws Exception{
+		conexao.close();
+	}
+
+
+	public static void inserirCreate(long cpf , String nome , String email)throws SQLException{
+
+		//onde vou colocar as instruções do banco de dado
+		String sql = "insert into Cliente values ("+cpf+", '"+nome+"', '"+email+"')";
+		Statement stmt = conexao.createStatement();
+		stmt.execute(sql);
+		conexao.commit();
+
+	}
+
+
+	//Arrumar o Consulta
+	public static void consultar(long cpf)throws SQLException{
+		//Passar a chave primaria no parametro
+
+
+		String sql = "select * from Cliente cpf='"+cpf+"'";
+		Statement stmt = conexao.createStatement();
+		ResultSet rs = stmt.executeQuery(sql);
+	
+	}
+
+	public static void consultarTodos()throws SQLException{
+
+		
+		String sql = "select * from Cliente";
+		Statement stmt = conexao.createStatement();
+		ResultSet rs = stmt.executeQuery(sql);
+
+		//int contador = 0;
+		int contador = rs.getRow();
+		while(rs.next()){
+
+			System.out.println("CPF : " + rs.getLong(1) + 
+					"Nome : " + rs.getString(2) + 
+					"Email : " + rs.getString(3));
+			//contador++;
+			System.out.println("=======================================");
+
+		}
+
+		System.out.println("Numero de clientes Listado : " + contador);
+	}
+
+	public static void alterar(long cpf , String nome , String email)throws SQLException{
+
+
+		String sql = "update  Cliente set nome='"+nome+"',email='"+email+"' where cpf="+cpf;
+		Statement stmt = conexao.createStatement();
+		stmt.executeUpdate(sql);
+		conexao.commit();
+
+
+
+	}
+
+
+	public static void excluir(long cpf) throws SQLException{
+
+		String sql = "delete from Cliente where cpf="+cpf;
+		Statement stmt = conexao.createStatement();
+		stmt.executeUpdate(sql);
+		conexao.commit();
+
+	}
+
+
+	public static void main(String[] args) {
+		
+		try{
+			connectar();
+
+			Scanner entrada = new Scanner(System.in);
+
+			int opcao = 0;
+			long cpf;
+			String nome , email;
+
+			while(opcao != 6){
+
+
+				System.out.println("Sistema de Gerenciamento de Cliente");
+				System.out.println("=================================");
+
+				System.out.println("Digite [1] Para Consultar um Cliente");
+				System.out.println("Digite [2] Para Consultar um Cliente especifico");
+				System.out.println("Digite [3] Para Inserir um Cliente");
+				System.out.println("Digite [4] Para Alterar um dado de um cliente");
+				System.out.println("Digite [5] Para Excluir um Cliente");
+				System.out.println("Digite [6] Para Sair");
+
+				opcao = entrada.nextInt();
+
+				switch (opcao) {
+				case 1:
+
+					System.out.println("[1] Consultar Todos");
+					consultarTodos();
+					break;
+
+				case 2:
+
+					System.out.println("[2] Consultar um cliente especifico");
+
+					System.out.println("Favor informar o CPF ! ");
+					cpf = entrada.nextLong();
+
+					consultar(cpf);
+
+					break;
+
+
+				case 3:
+
+					System.out.println("[3] Cadastrar um novo Cliente");
+
+					System.out.println("Favor informar o CPF ! ");
+					cpf = entrada.nextLong();
+					entrada.nextLine(); //Esvaziar o buffer
+
+					System.out.println("Favor informar um Nome : ");
+					nome = entrada.nextLine();
+
+					System.out.println("Informe o Email");
+					email = entrada.nextLine();
+
+					inserirCreate(cpf,nome,email);
+					break;
+
+
+				case 4:
+
+					System.out.println("[4] Alterar um  Cliente");
+
+					System.out.println("Favor informar o CPF ! ");
+					cpf = entrada.nextLong();
+					entrada.nextLine(); //Esvaziar o buffer
+
+					System.out.println("Favor informar um Nome : ");
+					nome = entrada.nextLine();
+
+					System.out.println("Informe o Email");
+					email = entrada.nextLine();
+
+					alterar(cpf,nome,email);
+					break;
+
+
+
+				case 5:
+					
+					System.out.println("[5] Excluir um novo Cliente");
+					
+					System.out.println("Favor informar o CPF ! ");
+					cpf = entrada.nextLong();
+					entrada.nextLine(); //Esvaziar o buffer
+
+					excluir(cpf);
+					break;
+					
+					
+					
+				case 6:
+					
+					System.out.println("Você Saiu");
+					
+					break;
+
+				}
+			}
+
+		}catch(Exception e){
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+	}
+
+}

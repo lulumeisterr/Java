@@ -1,0 +1,13 @@
+package br.com.fiap.bean;
+
+public class Curso {
+
+	private int cd_curso;
+	private String nm_curso;
+	private double vl_curso;
+	private String ds_titulacao;
+	
+	
+	
+	
+}

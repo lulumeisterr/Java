@@ -1,0 +1,53 @@
+package br.com.fiap.test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+
+import br.com.fiap.bean.Acessorio;
+import br.com.fiap.bean.Veiculo;
+
+public class Teste {
+
+	public static void main(String[] args) {
+
+		Veiculo objV = new Veiculo();
+
+	
+		int i = Integer.parseInt(JOptionPane.showInputDialog("Cadastre 5 Veiculo"));
+		
+		do{
+			if(i == 5){
+				
+			objV.setAno(JOptionPane.showInputDialog("Digite o ano do veiculo"));
+			objV.setModelo(JOptionPane.showInputDialog("Digite o modeo do veiculo"));
+			objV.setMontadora(JOptionPane.showInputDialog("Digite o nome da montadora"));
+			
+			i++;
+		
+			}else{
+				System.out.println("Somente 5");
+				break;
+				
+			}
+		}while(i < 5);
+		
+			String c = JOptionPane.showInputDialog("Deseja cadastrar um Acessorio ?");
+			if(c.equals("S")){
+				
+				List<Acessorio> Ac = new ArrayList<Acessorio>();
+				
+				Acessorio ac = new Acessorio();
+				
+				ac.setDescricao(JOptionPane.showInputDialog("Digite a descrição"));
+				ac.setValor(Double.parseDouble(JOptionPane.showInputDialog("Digite o valor")));
+				
+				
+				
+			}
+
+	}
+
+}
+

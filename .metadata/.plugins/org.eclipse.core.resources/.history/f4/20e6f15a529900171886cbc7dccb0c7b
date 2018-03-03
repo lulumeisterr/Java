@@ -1,0 +1,38 @@
+package br.com.fiap.test;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import br.com.fiap.bean.Cargo;
+
+public class InterfaceMap {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Cargo cargo1 = new("Estagiario","Alto",2500);
+		Cargo cargo2 = new("Junior","Medio",2000);
+		
+		
+		Map<String, Cargo> CargosMap = new HashMap<String, Cargo>();
+		
+		//Adicionando
+		CargosMap.put("1", cargo1);
+		CargosMap.put("2", cargo2);
+		
+		//Retornando um objeto atraves da chave
+		Cargo objCargo = CargosMap.get("1");
+		System.out.println(objCargo.getCargo());
+		
+		//Exibindo chave
+		System.out.println(CargosMap.keySet());
+		
+		//Exibindo os valores dos objetos
+		for (Cargo c : CargosMap.value) {
+			System.out.println(c.getCargo());
+		}
+		
+		
+	}
+
+}

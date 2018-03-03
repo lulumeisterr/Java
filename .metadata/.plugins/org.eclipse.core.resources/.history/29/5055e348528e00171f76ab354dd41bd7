@@ -1,0 +1,18 @@
+package br.com.fiap.BO;
+
+import br.com.fiap.bean.Telefone;
+
+public class TelefoneBO {
+
+	
+	public static InserscaoTelefone(Telefone objTel)throws Exception{
+		
+		if(objTel.getDdd() < 3){
+			return "DDD INCORRETO";
+		}
+		
+		
+	}
+	
+	
+}

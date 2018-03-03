@@ -1,0 +1,30 @@
+package br.com.fiap.excecao;
+
+import java.sql.SQLException;
+
+public class Excecao extends Exception {
+	
+
+	private static final long serialVersionUID = 7577905540270331358L;
+	
+	public static String Ex(Exception e){
+		if(e instanceof SQLException){
+			return "Erro com o banco de dados";
+		}else
+			if(e instanceof NumberFormatException){
+				return "Falha ao converter o numero";
+			}else 
+				if(e instanceof ArithmeticException){
+					return "Divisão por 0";
+				}else{
+					return "Erro Desconhecido";
+				}
+	}
+
+	public void print(){
+		System.out.println("============== Tratando erro ================");
+		System.out.println(getMessage());
+		System.out.println("PrintStackTrace: ");
+	}
+
+}

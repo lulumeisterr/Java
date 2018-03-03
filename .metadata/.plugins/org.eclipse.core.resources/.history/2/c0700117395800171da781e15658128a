@@ -1,0 +1,15 @@
+package br.com.fiap.TESTE_DAO;
+
+import br.com.fiap.DAO.ProdutoDAO;
+
+public class TesteProduto_DAO_Delete {
+
+	public static void main(String[] args)throws Exception{
+		
+		ProdutoDAO dao = new ProdutoDAO();
+		
+	}
+	
+	
+	
+}

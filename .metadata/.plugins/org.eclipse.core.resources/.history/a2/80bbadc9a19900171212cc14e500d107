@@ -1,0 +1,78 @@
+package br.com.fiap.BO;
+
+import java.util.List;
+
+import br.com.fiap.DAO.TelefoneDAO;
+import br.com.fiap.bean.Telefone;
+
+public class TelefoneBO {
+
+
+	public static String InserscaoTelefone(Telefone t , int numero)throws Exception{
+
+		if(t.getDdd() < 2){
+			return "DDD INVALIDO";
+		}
+
+		if(numero <= 0){
+			return "Digito do telefone invalido";
+		}
+
+		if(t.getOperadora().equals("") || t.getOperadora().trim().length() >= 10){
+			return "Campo em branco Ou Caracter invalido";
+		}
+
+		if(t.getNumero().length() != 10 || t.getNumero().length() != 9){
+
+			return "Numero Invalido";
+
+		}
+
+
+		TelefoneDAO tDAO = new TelefoneDAO();
+		String msg = tDAO.inserir(t, numero);
+		tDAO.fechar();
+		return msg;
+	}
+
+//----------------------------------------------------------------------
+	
+	//Localizando operadora 
+	public static List<Telefone> consultarPorOperadora(String fone)throws Exception{
+
+		TelefoneDAO tDAO = new TelefoneDAO();
+		Telefone t = new Telefone();
+
+		List<Telefone> msg = tDAO.consultarPorOperadora(fone);
+		tDAO.fechar();
+
+		return msg;
+	}
+
+//----------------------------------------------------------------------
+	
+	//Excluindo por numeroTelefone
+
+	public static int ExcluirNumero(int numero)throws Exception{
+			
+		TelefoneDAO tDAO = new TelefoneDAO();
+		int x = tDAO.excluirNumero(numero);
+		return x;
+	}
+	
+	
+//----------------------------------------------------------------------
+	//Alterando Operadora
+	
+	public static int alterarOperadora(Telefone obj)throws Exception{
+		if(obj.getOperadora().length()>20){
+			return 0;
+		}		
+		TelefoneDAO dao = new TelefoneDAO();
+		int x = dao.alterarPorNumeroTelefone(obj);
+		dao.fechar();
+		return x;
+	}
+	
+	
+}

@@ -1,0 +1,29 @@
+package br.com.fiap.teste;
+
+import br.com.fiap.BO.ClienteBO;
+import br.com.fiap.DAO.ClienteDAO;
+import br.com.fiap.bean.Cliente;
+
+public class INSERINDO_UM_CLIENTE_VERSAO_3_SEM_BEANS {
+
+	public static void main(String[] args) {
+		//SEM ACESSO O BEAN
+		Cliente c = new Cliente();
+		ClienteDAO dao = null;
+		
+		c.setNome("LUCAS");
+		c.setNumero(-21);
+		c.setQtdEstrelas(1);
+		
+		try{
+		//Metodo static n precisda instaciar o obj
+		System.out.println(ClienteBO.novoCliente(c));
+		}catch(Exception e){
+			
+			e.printStackTrace();
+			
+		}
+
+	}
+
+}

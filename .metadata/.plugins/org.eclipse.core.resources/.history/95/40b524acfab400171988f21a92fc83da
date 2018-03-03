@@ -1,0 +1,21 @@
+package br.com.fiap.bo;
+
+import java.util.List;
+
+import br.com.fiap.bean.Disciplina;
+import br.com.fiap.dao.DisciplinaDAO;
+
+
+public class DisciplinaBO {
+	
+
+	public static List<Disciplina> getAll(String nm_curso)throws Exception{
+		
+			DisciplinaDAO dis = new DisciplinaDAO();
+			List<Disciplina> e = dis.getAll(nm_curso);
+			dis.fechar();
+			return e;
+		}
+		
+		
+	}

@@ -1,0 +1,201 @@
+package br.com.fiap.beans;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
+public class Bairro {
+
+	static String nome = "rm76583";
+	static String senha = "270298";
+	static String url = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL";
+	static Connection conexao;	
+
+	public static void connectar()throws SQLException{
+
+		conexao = DriverManager.getConnection(url,"rm76583","270298");
+		conexao.setAutoCommit(false);
+		
+		
+	}
+	
+	public static void Desconcetar()throws SQLException{
+		conexao.close();
+	}
+	
+	//Inserindo
+	public static void inserir(int cdCliente , String nome , String sobrenome)throws SQLException{
+
+		String sql = "insert into BAIRRO values ("+cdCliente+", '"+nome+"', '"+sobrenome+"')";
+		Statement stmt = conexao.createStatement();
+		stmt.executeQuery(sql);
+		conexao.commit();
+
+	}
+
+	//Consultar Um cliente por codigo
+	
+	public static void consultar(int cdCliente)throws SQLException{
+		
+		String sql = "select * from BAIRRO where cod_cliente="+cdCliente+"";
+		Statement stmt = conexao.createStatement();
+		ResultSet rs = stmt.executeQuery(sql);
+		
+		while(rs.next()){
+			
+
+			System.out.println("Codigo do Cliente : " + rs.getInt(1) + "\n" + 
+					"Nome do Cliente  : " + rs.getString(2) + "\n" +
+					"Sobrenome do Cliente : " + rs.getString(3));
+		
+			System.out.println("");
+		}
+		
+		
+	}
+	
+	
+	//Consultar Todos Clientes
+	
+	
+	public static void consultarTodos()throws Exception{
+		
+		String sql = "select * from BAIRRO";
+		Statement stmt = conexao.createStatement();
+		ResultSet rs = stmt.executeQuery(sql);
+		
+		int contador = 0;
+		
+		while(rs.next()){
+		System.out.println("Codigo do Cliente : " + rs.getInt(1) + "\n" + 
+							"Nome do Cliente  : " + rs.getString(2) + "\n" +
+							"Sobrenome do Cliente : " + rs.getString(3));
+		
+				contador++;
+				System.out.println("=====================================");
+		}
+		
+		System.out.println("Numero de clientes listados : " + contador);
+		
+	}
+	
+	
+	//Aterar Dados
+	
+	public static void Alterar(int cdCliente , String nome , String sobrenome)throws SQLException{
+		
+		String sql = "update BAIRRO set nome='"+nome+"', sobrenome='"+sobrenome+"' where cod_cliente="+cdCliente+"";
+		Statement stmt = conexao.createStatement();
+		stmt.executeUpdate(sql);
+		conexao.commit();
+		
+	}
+	
+	
+	//Excluir Cliente por codigo
+	
+	public static void excluir(int cdCliente)throws SQLException{
+		
+		String sql = "delete from BAIRRO where cod_cliente="+cdCliente+"";
+		Statement stmt = conexao.createStatement();
+		stmt.executeUpdate(sql);
+		conexao.commit();
+		
+		
+	}
+
+	public static void main(String[] args)throws SQLException {
+	
+		connectar();
+		
+		String nome , sobrenome;
+		int cdCliente = 0;
+		int opcao = 0;
+		
+		try{
+			
+			while(opcao != 6){
+				
+				Scanner entrada = new Scanner(System.in);
+				
+				System.out.println("Digite [1] para cadastrar um cliente");
+				System.out.println("Digite [2] para Realizar uma consulta");
+				System.out.println("Digite [3] Para Consultar um unico Cliente");
+				System.out.println("Digite [4] Para Atualizar um cliente");
+				System.out.println("Digite [5] Para deletar um Cliente");
+				
+				opcao = entrada.nextInt();
+				
+				switch (opcao) {
+				case 1:
+					
+					System.out.println("Informe o codigo do cliente");
+					cdCliente = entrada.nextInt();
+					
+					System.out.println("Informe o nome");
+					nome = entrada.next();
+					
+					System.out.println("Digite o sobrenome");
+					sobrenome = entrada.next();
+					
+					inserir(cdCliente, nome, sobrenome);
+					
+					break;
+					
+				case 2:
+					System.out.println("Digite o codigo Para realizar a consulta");
+					cdCliente = entrada.nextInt();
+					consultarTodos();
+					break;
+					
+					
+				case 3:
+					
+					System.out.println("Digite o codigo especifico para buscar um unico Cliente");
+					cdCliente = entrada.nextInt();
+					consultar(cdCliente);
+					break;
+
+					
+				case 4:
+					System.out.println("Atualizar Dados do cliente por codigo");
+					
+					System.out.println("Favor Informar o codigo a ser Alterado");
+					cdCliente = entrada.nextInt();
+					
+					System.out.println("Favor Informar o Nome");
+					nome = entrada.next();
+					
+					System.out.println("Favor informar o Sobrenome");
+					sobrenome = entrada.next();
+					
+					Alterar(cdCliente, nome, sobrenome);
+					
+					break;
+				case 5:
+					System.out.println("Solicite o codigo do cliente para deletar");
+					cdCliente = entrada.nextInt();
+					excluir(cdCliente);
+					break;
+				}
+				
+				
+				
+			}
+			
+			
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+
+
+
+
+}
+

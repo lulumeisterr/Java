@@ -1,0 +1,65 @@
+package br.com.fiap.bean;
+
+import java.util.List;
+
+public class Veiculo implements Comparable<Veiculo>{
+
+	private String ano;
+	private String modelo;
+	private String valor;
+	private String montadora;
+	private List<Acessorio> acessorio;
+	
+	
+	public int compareTo(Veiculo v){
+		return 1;
+	}
+
+	public Veiculo(String ano, String modelo, String valor, String montadora, List<Acessorio> acessorio) {
+		
+		setAno(ano);
+		setModelo(modelo);
+		setValor(valor);
+		setMontadora(montadora);
+		setAcessorio(acessorio);
+	}
+	public String getAno() {
+		return ano;
+	}
+	public void setAno(String ano) {
+		this.ano = ano;
+	}
+	public String getModelo() {
+		return modelo;
+	}
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
+	public String getValor() {
+		return valor;
+	}
+	public void setValor(String valor) {
+		this.valor = valor;
+	}
+	public String getMontadora() {
+		return montadora;
+	}
+	public void setMontadora(String montadora) {
+		this.montadora = montadora;
+	}
+	public List<Acessorio> getAcessorio() {
+		return acessorio;
+	}
+	public void setAcessorio(List<Acessorio> acessorio) {
+		this.acessorio = acessorio;
+	}
+	
+	
+
+	
+
+	
+	
+}
+
+

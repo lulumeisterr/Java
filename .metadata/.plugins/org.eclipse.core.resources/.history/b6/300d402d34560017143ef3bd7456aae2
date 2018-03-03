@@ -1,0 +1,18 @@
+package br.com.fiap.bean;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class AcessoBD {
+
+	String  url = "jdbc:oracle:thin:@localhost:1521:xe";
+	String usuario = "curso_java";
+	String senha= "schema";
+	Connection conexao;
+	
+	
+	conexao = DriverManager.getConnection("url , usuario , senha");
+	conexao.setAutoCommit(false);
+	System.out.println("Logado");
+	
+}

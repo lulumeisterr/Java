@@ -1,0 +1,17 @@
+package br.com.fiap.teste2_COM_BO_CLIENTE;
+
+import br.com.fiap.bean.Cliente;
+
+public class CADASTRAR_CLIENTE_3 {
+
+	public static void main(String[] args) {
+		
+		Cliente c = new Cliente();
+		
+		
+		
+		
+
+	}
+
+}

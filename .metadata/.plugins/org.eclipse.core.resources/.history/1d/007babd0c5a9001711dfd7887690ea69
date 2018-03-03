@@ -1,0 +1,36 @@
+package br.com.fiap.teste;
+
+import java.io.FileWriter;
+import java.io.PrintWriter;
+
+import br.com.fiap.bean.Produto;
+
+public class GravandoSeparado {
+
+	static String gravarArq(Produto p)throws Exception{
+		
+		
+		FileWriter arquivo = new FileWriter("D:\\Arquivo\\Divido.txt");
+		PrintWriter dados = new PrintWriter(arquivo);
+		
+		dados.println(p.getNome());
+		dados.println(p.getRevendedor());
+		dados.close();
+		arquivo.close();
+		
+		return "Gravado";
+		
+	}
+	
+	public static void main(String[] args)throws Exception {
+		
+		Produto p = new Produto();
+		
+		p.setNome("lucas");
+		p.setMemoria("2GB");
+		
+		System.out.println(gravarArq(p));
+		
+	}
+
+}

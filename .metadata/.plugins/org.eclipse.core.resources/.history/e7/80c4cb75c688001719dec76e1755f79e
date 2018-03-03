@@ -1,0 +1,89 @@
+package br.com.fiap.BO;
+
+import java.util.List;
+
+import br.com.fiap.DAO.ClienteDAO;
+import br.com.fiap.bean.Cliente;
+
+public class ClienteBO {
+	
+	//nunca tem atributo em BO
+	//Ele nao pode depender de metodos
+	
+	//Todo metodo BO é STATIC - Pois ele é independende executa por si só
+	// Quando não é statico , Não esta seguindo a orientação ob
+	
+	
+	//Criando um metodo para Verificar a quantidade 
+	//de estrela
+	
+	public static String novoCliente(Cliente objC)throws Exception{
+		
+		if(objC.getQtdEstrelas() <1 || objC.getQtdEstrelas()>5){
+			
+			//return throws new RuntimeException();
+				return "Quantidade de estrela invalida";
+			//throws RuntimeException(); Derruba a aplicação
+		}
+		
+		
+		if(objC.getNome().length()>50){
+			return "Nome invalido Maior 50 Caracter";
+		}
+		
+		if(objC.getNumero() < 0){
+			return "Número invalido";
+		}
+		
+		//Testa
+		//Abre a conexao
+		//Inseri 
+		//Fecha
+		
+		ClienteDAO dao = new ClienteDAO();
+		String msg = dao.Inserir(objC);
+		dao.fecharConexao();
+		return msg;
+		
+	}
+	
+	public static Cliente consultarPorCodigo(int n)throws Exception{
+		
+		ClienteDAO dao = new ClienteDAO(); 
+		//Armazeno Ele em uma variavel
+		Cliente c = dao.retornandoUM_CLIENTE(n);
+		dao.fecharConexao();
+		
+		return c;
+	}
+	
+	//AUMENTANDO ESTRELA - UPDATE
+	
+	public static String AtualizandoEstrela(int e)throws Exception{
+		
+		if(e > 5){
+			return "";
+		}
+		
+		ClienteDAO dao = new ClienteDAO();
+		String c = dao.AUMENTANDO_ESTRELA(e);
+		dao.fecharConexao();
+		
+		return c;
+	}
+	
+	//Apagando por nome
+	
+	public String novoDeleteNome(String pNome)throws Exception{
+		
+		if(pNome.trim().length() < 12){
+			return "Nome maior que 12 Caracter";
+		}
+		
+		ClienteDAO dao = new ClienteDAO();
+		int  n  = dao.DELETANDO_NAME(pNome);
+		dao.fecharConexao();
+		
+		return n;
+	}
+}

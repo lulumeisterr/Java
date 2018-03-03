@@ -1,0 +1,26 @@
+package br.com.fiap.teste2_COM_BO_CLIENTE;
+
+import br.com.fiap.bean.Cliente;
+
+public class CADASTRAR_CLIENTE_3 {
+
+	public static void main(String[] args) {
+		
+		Cliente c = new Cliente();
+
+			c.setNome("LUCAS");
+			c.setNumero(3);
+			c.setQtdEstrelas(3);
+			
+		try{
+			
+			
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+
+	}
+
+}

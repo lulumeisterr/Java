@@ -1,0 +1,105 @@
+package br.com.fiap.teste;
+
+import javax.swing.JOptionPane;
+
+
+import br.com.fiap.DAO.ProdutoDAO;
+import br.com.fiap.bean.Produto;
+
+public class NOVO_TESTE_COM_TODO_O_CRUD {
+
+	public static void main(String[] args) {
+
+		Produto p = new Produto();
+		ProdutoDAO pDAO = null;
+
+		String consultar = JOptionPane.showInputDialog("O que vc deseja Realizar "
+				+ "[ 1 ] - Consultar / "
+				+ "[ 2 ] - Cadastrar / "
+				+ "[ 3 ] - Alterar - Incluindo Calculo / "
+				+ "[ 4 ] - Excluir / "
+				+ "[ 5 ] - Atualizar ");
+
+
+		if(consultar.equals("1")){
+
+			switch (consultar) {
+			case "1":
+
+				String c = JOptionPane.showInputDialog("Deseja consultar por codigo [C] ou Nome [N]");
+				if(c.equals("C")){
+
+					try{
+						pDAO = new ProdutoDAO();
+						int porC = Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo para consultar"));
+						System.out.println();
+
+					}catch(Exception e){
+						e.printStackTrace();
+					}finally{
+						try{
+							System.out.println(pDAO.FecharConexao());
+						}catch(Exception e){
+							e.printStackTrace();
+						}
+
+
+					}
+
+
+				}else
+					if(c.equals("N")){
+						try{
+							String porN = JOptionPane.showInputDialog("Digite o nome para consultar");
+						}catch(Exception e){
+							e.printStackTrace();
+						}finally{
+							try{
+								System.out.println("FAZER");
+							}catch(Exception e){
+								e.printStackTrace();
+							}
+						}
+					}
+				break;
+				
+			case "2":
+				
+				try{
+					
+					p.setCdProduto(Integer.parseInt(JOptionPane.showInputDialog("Insira um codigo")));
+					p.setDsProduto(JOptionPane.showInputDialog("Digite a descrição do produto"));
+					p.setNmCategoria(JOptionPane.showInputDialog("Categoria do produto"));
+					p.setValor(Double.parseDouble(JOptionPane.showInputDialog("Digite o valor")));
+					
+					System.out.println(pDAO.addProd(p));
+					
+				}catch(Exception e){
+					e.printStackTrace();
+				}finally{
+					try{
+						System.out.println(pDAO.FecharConexao());
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				}
+				
+			break;
+			
+			case "3":
+			
+				
+				
+			default:
+				break;
+
+			}
+
+
+		}
+
+
+
+	}
+
+}

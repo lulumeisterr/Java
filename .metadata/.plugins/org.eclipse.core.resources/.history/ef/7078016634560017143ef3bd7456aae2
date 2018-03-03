@@ -1,0 +1,22 @@
+package br.com.fiap.bean;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class AcessoBD {
+
+public static void main(String[] args) throws SQLException {
+	
+	
+	
+	Connection conexao = null;
+	String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	conexao = DriverManager.getConnection(url,"curso_java","schema");
+	System.out.println("Abriu conexao");
+	conexao.close();
+	
+	
+	
+}
+	
+}

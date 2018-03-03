@@ -1,0 +1,31 @@
+package br.com.fiap.teste;
+
+import javax.swing.JOptionPane;
+
+import br.com.fiap.DAO.ClienteDAO;
+import br.com.fiap.bean.Cliente;
+
+public class TestandoUmCliente {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Cliente c = new Cliente();
+		
+		ClienteDAO dao = null;
+		
+		try{
+			dao = new ClienteDAO();
+			
+			int numero = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero"));
+			Cliente cli = dao.retornandoUM_CLIENTE(numero);
+			System.out.println(cli.getNome());
+			System.out.println(cli.getQtdEstrelas());
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+
+}

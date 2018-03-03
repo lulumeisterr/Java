@@ -1,0 +1,33 @@
+package br.com.fiap.teste;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+
+import br.com.fiap.DAO.ClienteDAO;
+import br.com.fiap.bean.Cliente;
+
+public class TESTANDO_COM_ARRAYLIST_CLIENTE {
+
+	public static void main(String[] args) {
+		
+		ClienteDAO dao = null;
+		
+		try{
+			dao = new ClienteDAO();
+			List<Cliente> lista = dao.ListarPorNivel
+					(Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade de estrela")));
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			try{
+				System.out.println(dao.fecharConexao());
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+}

@@ -1,0 +1,43 @@
+package br.com.fiap.conexao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class Conexao_v2 {
+
+	public static void main(String[] args) {
+		
+		Connection conectar = null;
+		Statement estrutura = null;
+		ResultSet resultado = null;
+		
+		try {
+			String url = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL";
+			conectar = DriverManager.getConnection(url,"rm76583","270298");
+			System.out.println("Abriu conexão");
+			conectar.close();
+			
+			estrutura = conectar.createStatement();
+			resultado = estrutura.executeQuery("SELECT * FROM NR_CLIENTE , NM_CLIENTE FROM TB_DDD_CLIENTE");
+				while(resultado.next()){
+					System.out.println("CLIENTE : " + resultado.getString("NM_CLIENTE"));
+					System.out.println(" [" + resultado.getString("NR_CLIENTE")+ "]");
+				} 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			try{
+				resultado.close();
+				estrutura.close();
+				conectar.close();
+			}catch(Exception e){
+				
+			}
+		}
+		
+
+	}
+
+}

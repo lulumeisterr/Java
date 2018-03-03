@@ -1,0 +1,76 @@
+package br.com.fiap.bean;
+
+import java.io.Serializable;
+
+public class Produto implements Comparable<Produto>, Serializable{
+
+	
+	private String nome;
+	private String revendedor;
+	private String memoria;
+	private String velocidade;
+	
+	private static final long serialVersionUID = -3868509339211283486L;
+	
+	//Serializable identificação de classe por obj
+	
+	//FileoutputStream - Representa o arquivo fisicamente
+	//Object  = Representa oq esta dentro do arquivo
+	
+	public int comparaTo(Produto outro){
+	 return this.nome.compareTo(outro.nome);	
+	}
+	
+	
+	public Produto(){
+		
+	}
+	
+	
+	
+	public Produto(String nome, String revendedor, String memoria, String velocidade) {
+		super();
+		
+		setNome(nome);
+		setRevendedor(revendedor);
+		setMemoria(memoria);
+		setVelocidade(velocidade);
+		
+	}
+
+
+
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getRevendedor() {
+		return revendedor;
+	}
+	public void setRevendedor(String revendedor) {
+		this.revendedor = revendedor;
+	}
+	public String getMemoria() {
+		return memoria;
+	}
+	public void setMemoria(String memoria) {
+		this.memoria = memoria;
+	}
+	public String getVelocidade() {
+		return velocidade;
+	}
+	public void setVelocidade(String velocidade) {
+		this.velocidade = velocidade;
+	}
+
+	@Override
+	public int compareTo(Produto o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	
+	
+}

@@ -1,0 +1,115 @@
+package br.com.fiap.test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+
+import br.com.fiap.bean.Acessorio;
+import br.com.fiap.bean.Veiculo;
+
+public class Teste {
+
+	//A
+	public static double vlTotal(List<Veiculo> lista){
+
+		double guardaValor = 0;
+
+		for (Veiculo v : lista){
+			guardaValor =+ lista.size();
+		}
+
+		return guardaValor;
+	}
+	
+	//B
+	public static double media(List<Veiculo>media){
+		
+		double guardaMedia = 0;
+				
+		for (Veiculo veiculo : media) {
+			guardaMedia =+ media.size() /5;
+		}
+		
+		return guardaMedia;
+	}
+
+	
+	//C
+	public static double mValor(List<Veiculo>OutroValor){
+		
+		Veiculo v = new Veiculo();
+		
+		for (Veiculo veiculo : OutroValor) {
+			
+		}
+		
+	}
+	
+	
+	public static void main(String[] args) {
+
+		Veiculo objV = new Veiculo();
+
+			
+		int resp = 0;
+		
+		while(resp < 5){
+		
+				if(resp > 5){
+					System.out.println("Somente 5");
+					break;
+				}
+				
+				JOptionPane.showConfirmDialog(null, "CADASTRE","VEICULO", 
+						JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
+				
+				objV.setAno(JOptionPane.showInputDialog("Digite o ano do veiculo"));
+				objV.setModelo(JOptionPane.showInputDialog("Digite o modeo do veiculo"));
+				objV.setMontadora(JOptionPane.showInputDialog("Digite o nome da montadora"));
+				
+				resp++;
+				
+
+		}
+	
+		int c = Integer.parseInt(JOptionPane.showInputDialog(" Quantos acessorios deseja cadastrar um acessorio ?"));
+
+		do{
+			if(c <= 3){
+				List<Acessorio> Ac = new ArrayList<Acessorio>();
+
+				Acessorio ac = new Acessorio();
+
+				ac.setDescricao(JOptionPane.showInputDialog("Digite a descrição"));
+				ac.setValor(Double.parseDouble(JOptionPane.showInputDialog("Digite o valor")));
+				Ac.add(ac);
+
+				//Colocando acessorios no veiculo
+				objV.setAcessorio(Ac);
+				
+				List<Veiculo> ve = new ArrayList<Veiculo>();
+				ve.add(objV);
+				
+				for (Veiculo veiculo : ve) {
+					System.out.println(veiculo.getAno());
+					System.out.println(veiculo.getModelo());
+					System.out.println(veiculo.getMontadora());
+					System.out.println(vlTotal(ve));
+					
+				}
+				
+				
+
+			}else{
+				System.out.println("Apenas 3 acessorio");
+			}
+
+			c++;
+
+		}while(c < 3);
+
+	}
+
+}
+

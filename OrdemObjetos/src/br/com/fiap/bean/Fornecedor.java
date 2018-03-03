@@ -1,0 +1,53 @@
+package br.com.fiap.bean;
+
+import java.util.List;
+
+public class Fornecedor {
+
+	private String cnpj;
+	private String razaSocial;
+	private String email;
+	private List<Telefone> fones;
+	
+	public Fornecedor(){
+		
+		
+	}
+	
+	public Fornecedor(String cnpj, String razaSocial, String email, List<Telefone> fones) {
+		super();
+		setCnpj(cnpj);
+		setRazaSocial(razaSocial);
+		setEmail(email);
+		setFones(fones);
+	}
+
+	public String getCnpj() {
+		return cnpj;
+	}
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+	public String getRazaSocial() {
+		return razaSocial;
+	}
+	public void setRazaSocial(String razaSocial) {
+		this.razaSocial = razaSocial;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public List<Telefone> getFones() {
+		return fones;
+	}
+	public void setFones(List<Telefone> fones) {
+		this.fones = fones;
+	}
+	
+	
+	
+	
+}

@@ -1,0 +1,93 @@
+package br.com.fiap.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.fiap.bean.Curso;
+import br.com.fiap.bean.Disciplina;
+import br.com.fiap.conexao.ConexaoFactory;
+
+public class DisciplinaDAO {
+	
+	private Connection conexao;
+	
+	
+	public DisciplinaDAO()throws Exception{
+		conexao = new ConexaoFactory().connectar();
+	}
+	
+	public String fechar()throws Exception{
+		conexao.close();
+		return "Fechou";
+	}
+	
+	
+	/*
+	 * Crie na classe DisciplinaDAO, crie um método chamado getAll(), 
+	 * que deverá receber uma String (nome do curso), e 
+	 * então deverá retornar todas as disciplinas, deste 
+	 * curso. Este método deverá  retornar uma lista de disciplinas.
+
+	 */
+	
+	public String gravarDisciplina(Disciplina d , int fk_curso)throws Exception{
+		
+		
+		PreparedStatement estrutura2 = conexao.prepareStatement("INSERT INTO TB_EXER_DISCIPLINA VALUES (?,?,?,?)");
+		estrutura2.setInt(1, d.getCd_displicina());
+		estrutura2.setString(2, d.getNm_disciplina());
+		estrutura2.setInt(3, d.getQt_cargahoraria());
+		estrutura2.setInt(4, fk_curso);
+		
+		estrutura2.execute();
+		estrutura2.close();
+		
+		return "Curso e Disciplina Gravado";
+		
+
+	}
+	
+	
+	public List<Disciplina> getAll(String nm_curso)throws Exception{
+		
+		List<Disciplina> lista = new ArrayList<>();
+		
+		Disciplina d = new Disciplina();
+		
+		PreparedStatement estrutura = conexao.prepareStatement("SELECT  "
+				+ "C.NM_CURSO , "
+				+ "D.NM_DISCIPLINA , "
+				+ "D.QT_CARGAHORARIA  "
+				+ "FROM TB_EXER_CURSO C INNER JOIN  TB_EXER_DISCIPLINA D "
+				+ "ON (C.CD_CURSO = D.CD_CURSO) "
+				+ "WHERE NM_CURSO = ?");
+		
+		estrutura.setString(1, nm_curso);
+		
+		ResultSet rs = estrutura.executeQuery();
+		
+		while(rs.next()){
+			
+			d = new Disciplina();
+			System.out.println("Nome do curso :" + rs.getString("NM_CURSO"));
+			System.out.println("Nome da disciplina: " + rs.getString("NM_DISCIPLINA"));
+			System.out.println("Carga Horaria do curso: " + rs.getInt("QT_CARGAHORARIA"));
+			
+			System.out.println("--------------------------------------------------");
+			CursoDAO c = new CursoDAO();
+			c.fechar();
+			
+			lista.add(d);
+
+		}
+		
+		rs.close();
+		estrutura.close();
+		return lista;
+	}
+	
+
+}

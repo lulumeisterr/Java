@@ -1,0 +1,27 @@
+package br.com.fiap.teste;
+
+import br.com.fiap.bean.Cliente;
+
+public class DELETANDO_POR_NOME {
+
+	public static void main(String[] args) {
+		
+		
+		Cliente c = new Cliente();
+		
+		try{
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			
+			try{
+			
+			}catch(Exception e){
+			e.printStackTrace();	
+			}
+		}
+
+	}
+
+}

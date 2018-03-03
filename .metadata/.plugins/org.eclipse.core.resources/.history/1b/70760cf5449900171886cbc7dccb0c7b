@@ -1,0 +1,28 @@
+package br.com.fiap.test;
+
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class Teste_Dados {
+	
+	
+	public static void main(String[] args) {
+		
+		//Dependendo da versão vc coloca o tipo de dado na implementação
+		//List<String> cargos = new ArrayList<>();
+		List<String> cargos = new ArrayList<String>();
+		
+		cargos.add("DBA");
+		cargos.add("Estagiario");
+		cargos.add("Desenvolvedor");
+		cargos.add("Desenvolvedor");
+		
+		System.out.println(cargos);
+		Collections.sort(cargos);
+		System.out.println(cargos);
+	}
+	
+
+}

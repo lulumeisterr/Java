@@ -1,0 +1,42 @@
+package br.com.fiap.teste;
+
+import javax.swing.JOptionPane;
+
+import br.com.fiap.DAO.ClienteDAO;
+import br.com.fiap.bean.Cliente;
+
+public class DELETANDO_UM_CLIENTE_POR_COD {
+
+	public static void main(String[] args) {
+		
+		int cont = 0;
+		Cliente c = new Cliente();
+		ClienteDAO dao = null;
+		
+		try{
+		dao = new ClienteDAO();
+		
+		while(cont < 0){
+		int numero = Integer.parseInt(JOptionPane.showInputDialog("Quantos Clientes vc deseja deletar ? "));
+		
+		
+		System.out.println(dao.deletandoUm_Cliente(c));
+		cont++;
+		}
+		}catch(Exception e){
+			
+			e.printStackTrace();
+		}finally{
+			try{
+				
+				System.out.println(dao.fecharConexao());
+				
+			}catch(Exception e){
+				
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+}

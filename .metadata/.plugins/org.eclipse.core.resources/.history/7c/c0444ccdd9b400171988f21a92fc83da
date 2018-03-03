@@ -1,0 +1,27 @@
+package br.com.fiap.bean;
+
+import java.io.Serializable;
+
+public class Curso implements Comparable<Curso> , Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8417808940489848194L;
+	
+	private int cd_curso;
+	private String nm_curso;
+	private double vl_curso;
+	private String ds_titulacao;
+	
+	
+	public int compareTo(Curso o) {
+		
+	}
+	
+	
+	
+	
+	
+	
+}

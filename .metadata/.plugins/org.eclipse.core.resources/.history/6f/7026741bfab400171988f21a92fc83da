@@ -1,0 +1,27 @@
+package br.com.fiap.teste;
+
+import br.com.fiap.dao.DisciplinaDAO;
+
+public class TesteDisciplina {
+	
+	public static void main(String[] args) {
+		
+		DisciplinaDAO = null;
+		
+		try{
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			try{
+				
+			}catch(Exception e){
+				e.printStackTrace(s);
+			}
+		}
+
+		
+	}
+	
+	
+}

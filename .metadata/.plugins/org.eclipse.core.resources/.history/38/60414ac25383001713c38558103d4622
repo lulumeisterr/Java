@@ -1,0 +1,21 @@
+package br.com.fiap.teste;
+
+public class TESTANDO_COM_ARRAYLIST_CLIENTE {
+
+	public static void main(String[] args) {
+		
+		try{
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			try{
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+}

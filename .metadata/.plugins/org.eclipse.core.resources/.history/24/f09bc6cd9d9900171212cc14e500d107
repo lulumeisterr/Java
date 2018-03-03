@@ -1,0 +1,10 @@
+package br.com.fiap.teste2_COM_BO_CLIENTE;
+
+public class CADASTRAR_CLIENTE_3 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

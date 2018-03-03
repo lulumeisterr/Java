@@ -1,0 +1,138 @@
+package br.com.fiap.DAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import br.com.fiap.bean.Produto;
+import br.com.fiap.conexao.ConexaoFactory;
+
+public class ProdutoDAO {
+	private Connection minhaconexao;
+
+	//Criação de um metodo q quando eu quiser a conexão basta chamar
+	//Criando um atributo Minha Conexão para estabelecer a conexao
+	//Criação do atributo para guardar nos metodos para inserir
+
+	public ProdutoDAO()throws Exception{
+
+		this.minhaconexao = new ConexaoFactory().queroConexao();
+
+	}
+
+	public String add(Produto p)throws Exception{
+
+		//Serve para Interligar os dados que Vai ate o banco e tras 
+		//Ao banco , Seja para inserir consultar e inserir
+
+		PreparedStatement stmt = minhaconexao.prepareStatement
+				("insert into produto values (?, ?, ?, ?, ?)");;
+
+				//Um Primero ? encontrado na instrução SQL
+				//Passar os valores respeitando o banco de dados
+
+				stmt.setString(1, p.getDescricao());
+				stmt.setDouble(2, p.getValorVenda());
+				stmt.setDouble(3, p.getValorCompra());
+				stmt.setString(4, p.getMarca());
+				stmt.setInt(5, p.getCodigo());
+				stmt.execute(); //Fazendo a gravação
+				stmt.close();
+
+				return "Produto Cadastrado com Sucesso";
+
+	}
+
+
+	public String Atualizar(Produto p)throws Exception{
+
+		String sql = "update produto set ds_produto = ? , vl_venda = ? , vl_compra = ? , nm_marca = ?  where cd_produto = ?";
+		PreparedStatement stmtUpdate = minhaconexao.prepareStatement(sql);
+		
+				stmtUpdate.setString(1, p.getDescricao());
+				stmtUpdate.setDouble(2, p.getValorVenda());
+				stmtUpdate.setDouble(3, p.getValorCompra());
+				stmtUpdate.setString(4, p.getMarca());
+				stmtUpdate.setInt(5, p.getCodigo());
+				stmtUpdate.execute(); //Fazendo a gravação
+				stmtUpdate.close();
+
+		return "Produto Atualizado com Sucesso";
+
+	}
+	
+	
+	public String consultarPorCodigo(Produto p)throws Exception{
+		
+		String sql = "select * from produto where cd_produto = ? ";
+		PreparedStatement stmtpesquisar = minhaconexao.prepareStatement(sql);
+		stmtpesquisar.setInt(1, p.getCodigo());
+		
+		ResultSet rs = stmtpesquisar.executeQuery();
+		
+		while(rs.next()){
+			
+			System.out.println("Descrição : " + rs.getString(1) + "\n" +
+							 "Valor da venda : " + rs.getDouble(2) + "\n" +
+							 "Valor da compra : " + rs.getDouble(3) + "\n" +
+							 "Marca : " + rs.getString(4) + "\n" +
+							 "Codigo da venda : " + rs.getInt(5));
+			
+			
+		}
+		
+		stmtpesquisar.execute();
+		stmtpesquisar.close();
+		
+		return "Listados com sucesso";
+		
+	}
+	
+	
+	
+	public String consultarTodos(Produto p)throws Exception{
+		
+		String sql = "select * from produto";
+		PreparedStatement stmtTodo = minhaconexao.prepareStatement(sql);
+		ResultSet rs = stmtTodo.executeQuery();
+		
+		int contador = 0;
+		
+		while(rs.next()){
+			
+			
+			System.out.println("Descrição : " + rs.getString(1) + "\n" +
+					 "Valor da venda : " + rs.getDouble(2) + "\n" +
+					 "Valor da compra : " + rs.getDouble(3) + "\n" +
+					 "Marca : " + rs.getString(4) + "\n" +
+					 "Codigo da venda : " + rs.getInt(5));
+			
+			contador++;
+		}
+		
+		System.out.println("Quantidade de Produtos Cadastrados : " + contador );
+		
+		stmtTodo.execute();
+		stmtTodo.close();
+		
+		System.out.println("");
+		
+		return "Codigo verificado com Sucesso";
+	}
+	
+	
+	public String Deletar(Produto p)throws Exception{
+		
+		String sql = "delete from produto where cd_produto = ?";
+		PreparedStatement stmtDelete = minhaconexao.prepareStatement(sql);
+		stmtDelete.setInt(1, p.getCodigo());
+		stmtDelete.execute();
+		stmtDelete.close();
+		
+		return "Produto Deletado com Sucesso";
+		
+		
+	}
+
+
+}

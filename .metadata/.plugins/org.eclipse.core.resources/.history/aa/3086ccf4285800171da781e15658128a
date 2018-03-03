@@ -1,0 +1,16 @@
+package br.com.fiap.conexao;
+
+public class ConexaoFactory {
+
+	
+	//Classe com uma função de fabricar a conexão
+	
+	
+	public Connection queroConexao(){
+		
+		
+		
+	}
+	
+	
+}

@@ -1,0 +1,24 @@
+package br.com.fiap.teste;
+
+import br.com.fiap.bean.Cliente;
+
+public class DELETANDO_UM_CLIENTE_POR_COD {
+
+	public static void main(String[] args) {
+		
+		
+		Cliente objC = null;
+		
+		try{
+			
+		objC = new Cliente();
+		objC.setNumero(45);
+			
+		}catch(Exception e){
+			
+			e.printStackTrace();
+		}
+
+	}
+
+}

@@ -1,0 +1,79 @@
+package br.com.fiap.DAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.fiap.bean.Produto;
+import br.com.fiap.conexao.ConexaoFactory;
+
+public class ProdutoDAO {
+
+	private Connection conectar;
+
+	public ProdutoDAO()throws Exception{
+
+		conectar = new ConexaoFactory().conectar();
+
+	}
+
+	public String FecharConexao()throws Exception{
+
+		conectar.close();
+
+		return "Conexão Off";
+	}
+	
+	public String addProd(Produto p)throws Exception{
+		
+		PreparedStatement estrutura = conectar.prepareStatement("INSERT INTO TB_DDD_PRODUTO VALUES (?, ?, ?)");
+		estrutura.setInt(1, p.getCdProduto());
+		estrutura.setString(2, p.getDsProduto());
+		estrutura.setString(3, p.getNmCategoria());
+		estrutura.execute();
+		estrutura.close();
+		
+		return "Produto Adicionado";
+	}
+	
+	
+	//AUMENTANDO A PORCENTAGEM
+	
+	public double AumentarValor(float valor)throws Exception{
+		
+		PreparedStatement estrutura = conectar.prepareStatement("UPDATE TB_DDD_CLIENTE set VL_VALOR = VL_VALOR/100 + 1 * 1");
+		estrutura.setDouble(1, valor);
+		double x = estrutura.executeUpdate();
+		estrutura.close();
+		
+		return x;
+	}
+	
+	//Retornando por um Arraylist
+	
+	public List<Produto> getRetornaCategoria(int qntCategoria)throws Exception{
+		
+		List<Produto> lista = new ArrayList<>();
+		
+		Produto objProd = new Produto();
+		PreparedStatement estrutura = conectar.prepareStatement("");
+		
+		return lista;
+	}
+	
+	
+	//Excluindo por codigo
+	
+	public int ExcluirProd(int numero)throws Exception{
+		
+		PreparedStatement estrutura = conectar.prepareStatement("DELETE FROM TB_DDD_CLIENTE WHERE NR_CLIENTE = ?");
+		estrutura.setInt(1, numero);
+		int x = estrutura.executeUpdate();
+		estrutura.close();
+		
+		return x;
+	}
+}
+	
+

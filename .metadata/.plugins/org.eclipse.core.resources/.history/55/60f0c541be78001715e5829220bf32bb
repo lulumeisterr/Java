@@ -1,0 +1,60 @@
+package br.com.fiap.conexao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class conexao_v4 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		
+		
+		Connection conectar = null;
+		PreparedStatement estrutura = null;
+		ResultSet resultado = null;
+		
+		try {
+			String url = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL";
+			conectar = DriverManager.getConnection(url,"rm76583","270298");
+			System.out.println("Abriu conexão");
+		
+			//Selecionando apenas um CLIENTE
+			//Pesquisando por Uma pessoa que termina com A ou outras linhas , 
+			//Antes do 'A%' pega os nomes que começa pegando por A
+			//Depois do %A Pega no final do nome que começa com A
+			
+			//where NM_CLIENTE LIKE '%S' 
+			
+			estrutura = conectar.prepareStatement("SELECT * FROM TB_DDD_CLIENTE");
+			resultado = estrutura.executeQuery();
+				while(resultado.next()){
+				System.out.println("CLIENTE : " + resultado.getString("NM_CLIENTE"));
+				System.out.println("CODIGO  : [" + resultado.getString("NR_CLIENTE")+ "]");
+//					System.out.println("NUMERO : " + resultado.getInt(1));
+//					System.out.println("NOME   : " + resultado.getString(2));
+				} 
+					
+				//Deletando
+				estrutura = conectar.prepareStatement("delete from TB_DDD_CLIENTE where NM_CLIENTE = 'ZEZE' ");
+				resultado = estrutura.executeQuery();
+				
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			try{
+				resultado.close();
+				estrutura.close();
+				conectar.close();
+			}catch(Exception e){
+				
+			}
+		}
+	
+	}
+}
+
+

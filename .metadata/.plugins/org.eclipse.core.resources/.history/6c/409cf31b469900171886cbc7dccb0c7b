@@ -1,0 +1,21 @@
+package br.com.fiap.test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.fiap.bean.Cargo;
+
+public class ListCollection_Objeto {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		
+		List<Cargo> c = new ArrayList<Cargo>();
+		c.add(new Cargo("DBA","JUNIOR",700));
+		c.add(new Cargo("Estagiario","Pleno",1200));
+		c.add(new Cargo("Desenvolvedor","Senior",4000));
+		System.out.println(c);
+	}
+
+}

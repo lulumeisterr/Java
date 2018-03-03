@@ -1,0 +1,38 @@
+package br.com.fiap.bean;
+
+public class Telefone {
+	
+	private int ddd;
+	private int numero;
+	private String operadora;
+	
+	
+	
+	public Telefone(int ddd, int numero, String operadora) {
+		super();
+		setDdd(ddd);
+		setNumero(numero);
+		setOperadora(operadora);
+	}
+	public int getDdd() {
+		return ddd;
+	}
+	public void setDdd(int ddd) {
+		this.ddd = ddd;
+	}
+	public int getNumero() {
+		return numero;
+	}
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+	public String getOperadora() {
+		return operadora;
+	}
+	public void setOperadora(String operadora) {
+		this.operadora = operadora;
+	}
+	
+	
+
+}

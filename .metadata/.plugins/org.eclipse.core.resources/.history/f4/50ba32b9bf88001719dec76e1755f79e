@@ -1,0 +1,30 @@
+package br.com.fiap.teste;
+
+import br.com.fiap.BO.ClienteBO;
+import br.com.fiap.DAO.ClienteDAO;
+import br.com.fiap.bean.Cliente;
+
+public class INSERINDO_UM_CLIENTE_VERSAO_2_COM_BO {
+
+	public static void main(String[] args) {
+		
+		Cliente c = new Cliente();
+		ClienteDAO dao = null;
+		
+		c.setNome("LUCAS");
+		c.setNumero(45);
+		c.setQtdEstrelas(1);
+		
+		try{
+		ClienteBO bo = new ClienteBO();
+		System.out.println(dao.Inserir(c));
+		
+		}catch(Exception e){
+			
+			e.printStackTrace();
+			
+		}
+
+	}
+
+}

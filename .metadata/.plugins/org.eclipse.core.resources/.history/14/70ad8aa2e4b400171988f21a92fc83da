@@ -1,0 +1,55 @@
+package br.com.fiap.bean;
+
+import java.io.Serializable;
+
+public class Disciplina implements Comparable<Disciplina> , Serializable{
+
+
+	private static final long serialVersionUID = 4923663112998067968L;
+	
+	private int cd_displicina;
+	private String nm_disciplina;
+	private int qt_cargahoraria;
+	
+	
+	public Disciplina(){
+		
+	}
+
+	public int compareTo(Disciplina o) {
+		return this.nm_disciplina.compareTo(o.nm_disciplina);
+	}
+	
+	
+	public Disciplina(int cd_displicina, String nm_disciplina, int qt_cargahoraria) {
+		super();
+		setCd_displicina(cd_displicina);
+	
+		setNm_disciplina(nm_disciplina);
+		setQt_cargahoraria(qt_cargahoraria);
+	}
+
+	public int getCd_displicina() {
+		return cd_displicina;
+	}
+
+	public void setCd_displicina(int cd_displicina) {
+		this.cd_displicina = cd_displicina;
+	}
+
+	public String getNm_disciplina() {
+		return nm_disciplina;
+	}
+	public void setNm_disciplina(String nm_disciplina) {
+		this.nm_disciplina = nm_disciplina;
+	}
+	public int getQt_cargahoraria() {
+		return qt_cargahoraria;
+	}
+	public void setQt_cargahoraria(int qt_cargahoraria) {
+		this.qt_cargahoraria = qt_cargahoraria;
+	}
+
+
+	
+}

@@ -1,0 +1,72 @@
+package br.com.fiap.teste;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+
+import br.com.fiap.bean.Curso;
+import br.com.fiap.bean.Disciplina;
+import br.com.fiap.dao.CursoDAO;
+
+
+public class Teste {
+
+	public static void main(String[] args) {
+		
+		int fk_curso = 0;
+		int verifica;
+
+		Curso c = new Curso();
+		Disciplina d = new Disciplina();
+		CursoDAO cDAO = null;
+		
+		
+		verifica = Integer.parseInt(JOptionPane.showInputDialog("0 - Para Cadastrar uma Disciplina e um curso " + 
+														"\n" + "1 - Adicionar somente uma Disciplina"));
+		
+		if(verifica == 0){
+			
+		
+		
+		List<Disciplina> lista = new ArrayList<>();
+		
+		d.setCd_displicina(1);
+		d.setNm_disciplina("Java");
+		d.setQt_cargahoraria(30);
+		fk_curso = 1;
+		
+		c.setListaDiscplina(lista);
+		
+		c.setCd_curso(1);
+		c.setDs_titulacao("ADS");
+		c.setNm_curso("Analise Desenvolvimento S");
+		c.setVl_curso(1200);
+		
+		}else
+			if(verifica == 1){
+				
+				d.setCd_displicina(1);
+				d.setNm_disciplina("Java");
+				d.setQt_cargahoraria(30);
+				fk_curso = 1;
+				
+			}
+	
+		try{
+			
+			cDAO = new CursoDAO();
+			System.out.println(cDAO.gravarCurso(c, d, verifica, fk_curso);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			try{
+				cDAO.fechar();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+}

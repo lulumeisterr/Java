@@ -1,0 +1,50 @@
+package br.com.fiap.BO;
+
+import br.com.fiap.DAO.ClienteDAO;
+import br.com.fiap.bean.Cliente;
+
+public class ClienteBO2_SEMBEAN {
+	
+	//nunca tem atributo em BO
+	//Ele nao pode depender de metodos
+	
+	//Todo metodo BO é STATIC - Pois ele é independende executa por si só
+	// Quando não é statico , Não esta seguindo a orientação ob
+	
+	
+	//Criando um metodo para Verificar a quantidade 
+	//de estrela
+	
+	//SEM ACESSO , METODO RECEBENDO PARAMENTRO
+	public static String novoCliente(String n , int nu , int e)throws Exception{
+		
+		if( e <1 || e >5){
+			
+			//return throws new RuntimeException();
+				return "Quantidade de estrela invalida";
+			//throws RuntimeException(); Derruba a aplicação
+		}
+		
+		
+		if(objC.getNome().length()>50){
+			return "Nome invalido Maior 50 Caracter";
+		}
+		
+		if(objC.getNumero() < 0){
+			return "Número invalido";
+		}
+		
+		//Testa
+		//Abre a conexao
+		//Inseri 
+		//Fecha
+		
+		ClienteDAO dao = new ClienteDAO();
+		String msg = dao.Inserir(objC);
+		dao.fecharConexao();
+		return msg;
+		
+	}
+	
+
+}

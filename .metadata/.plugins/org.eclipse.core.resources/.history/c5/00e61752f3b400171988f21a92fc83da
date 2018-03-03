@@ -1,0 +1,100 @@
+package br.com.fiap.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import br.com.fiap.bean.Curso;
+import br.com.fiap.bean.Disciplina;
+import br.com.fiap.conexao.ConexaoFactory;
+
+public class CursoDAO {
+
+	private Connection conexao;
+
+	public CursoDAO()throws Exception{
+		conexao = new ConexaoFactory().connectar();
+	}
+
+	public String fechar()throws Exception{
+		conexao.close();
+		return "Fechou";
+	}
+
+
+	public Curso getCurso(String nm_curso)throws Exception{
+		Curso c = new Curso();
+		return c;
+
+	}
+
+	public String gravarCurso(Curso c , Disciplina d , int verifica , int fk_curso)throws Exception{
+
+		if(verifica == 99){
+			PreparedStatement stmt = conexao.prepareStatement("SELECT * FROM TB_EXER_CURSO WHERE CD_CURSO = ?");
+			stmt.setInt(1, c.getCd_curso());
+
+			ResultSet rs = stmt.executeQuery();
+
+			if(rs.next()){
+
+				if(rs.getInt("CD_CURSO") == 0){
+					System.out.println("Curso Não existente");
+				}else{
+					System.out.println("Codigo do curso : " + rs.getInt("CD_CURSO") + " Existente");
+					verifica = 1;
+				}
+
+				return "Verificação";
+			}
+
+			rs.close();
+			stmt.execute();
+			stmt.close();
+
+		}else{
+
+			if(verifica == 1){
+
+				PreparedStatement estrutura2 = conexao.prepareStatement("INSERT INTO TB_EXER_DISCIPLINA VALUES (?,?,?,?)");
+				estrutura2.setInt(1, d.getCd_displicina());
+				estrutura2.setString(2, d.getNm_disciplina());
+				estrutura2.setInt(3, d.getQt_cargahoraria());
+				estrutura2.setInt(4, fk_curso);
+
+				estrutura2.execute();
+				estrutura2.close();
+
+				return "Disciplina Inserida";
+
+			}else{
+				if(verifica == 0){
+
+					PreparedStatement estrutura1 = conexao.prepareStatement("INSERT INTO TB_EXER_CURSO VALUES (?,?,?,?) ");
+
+					estrutura1.setInt(1, c.getCd_curso());
+					estrutura1.setString(2, c.getNm_curso());
+					estrutura1.setDouble(3,	c.getVl_curso());
+					estrutura1.setString(4, c.getDs_titulacao());
+
+					estrutura1.execute();
+
+
+					for (Disciplina dis : c.getListaDiscplina()) {
+						new DisciplinaDAO().gravarDisciplina(dis, c.getCd_curso());
+					}
+
+					estrutura1.close();
+
+					return "Inserido Curso e disciplina com sucesso";
+
+				}
+			}
+			return "Verificado";
+
+
+		}
+		return "AAA";
+
+	}
+}

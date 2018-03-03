@@ -1,0 +1,11 @@
+package br.com.fiap.conexao;
+
+public class TesteConexao {
+
+	public static void main(String[] args) {
+		
+		new ConexaoFactory().queroConexao();
+		
+	}
+
+}

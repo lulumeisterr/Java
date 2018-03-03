@@ -1,0 +1,67 @@
+package br.com.fiap.bean;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class ClienteApp {
+	
+	static String  url = "jdbc:oracle:thin:@localhost:1521:xe";
+	static String usuario = "curso_java";
+	static String senha= "schema";
+	static Connection conexao;
+	
+	
+	public static void connectar()throws Exception{
+		
+		conexao = DriverManager.getConnection("url , usuario , senha");
+		conexao.setAutoCommit(false);
+		System.out.println("Logado");
+	}
+	
+	
+	public static void Desconcetar()throws Exception{
+		
+		conexao.close();
+		System.out.println("Deslogado");
+	}
+	
+	
+	public static void inserirCreate(long cpf , String nome , String email)throws SQLException{
+		
+		//onde vou colocar as instruções do banco de dado
+		String sql = "insert into Cliente values ("+cpf+", '"+nome+",'"+email+"')";
+		Statement stmt = conexao.createStatement();
+		stmt.execute(sql);
+		conexao.commit();
+		
+	}
+	
+	
+	public static void consultar(){
+		
+	}
+	
+	public static void consultarTodos(){
+		
+	}
+	
+	public static void alterar(){
+		
+	}
+	
+	
+	public static void excluir(){
+		
+	}
+	
+	
+	public static void main(String[] args) {
+		
+
+		
+		
+	}
+	
+}

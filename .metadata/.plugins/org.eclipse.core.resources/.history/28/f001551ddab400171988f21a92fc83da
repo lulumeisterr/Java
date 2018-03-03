@@ -1,0 +1,11 @@
+package br.com.fiap.bean;
+
+public class Disciplina {
+
+	private int cd_displicina;
+	private String nm_disciplina;
+	private int qt_cargahoraria;
+	private Curso fkcurso;
+	
+	
+}

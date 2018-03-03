@@ -1,0 +1,10 @@
+package br.com.fiap.exececao;
+
+public class Excecao extends Exception {
+
+	
+	// 1 Tornar ela como Excecao
+	// 2 Criar um metodo para Realizar
+	
+	
+}

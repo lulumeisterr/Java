@@ -1,0 +1,27 @@
+package br.com.fiap.BO;
+
+import br.com.fiap.DAO.TelefoneDAO;
+import br.com.fiap.bean.Telefone;
+
+public class TelefoneBO {
+
+	
+	public static String InserscaoTelefone(Telefone t , int numero)throws Exception{
+		
+		if(t.getDdd() < 3){
+			return "DDD INVALIDO";
+		}
+		
+		if(numero != 9 || numero !=8){
+			return "Digito do telefone invalido";
+		}
+		
+		TelefoneDAO tDAO = new TelefoneDAO();
+		String msg = tDAO.inserir(t, numero);
+		tDAO.fechar();
+		return msg;
+	}
+	
+	
+	
+}

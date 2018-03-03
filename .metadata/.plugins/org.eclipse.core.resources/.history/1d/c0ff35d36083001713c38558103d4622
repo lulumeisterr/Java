@@ -1,0 +1,13 @@
+package br.com.fiap.teste;
+
+
+import br.com.fiap.DAO.ProdutoDAO;
+import br.com.fiap.bean.Produto;
+
+public class NOVO_TESTE_COM_TODO_O_CRUD {
+
+	public static void main(String[] args) {
+
+
+	}
+}

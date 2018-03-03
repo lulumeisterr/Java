@@ -1,0 +1,22 @@
+package br.com.fiap.conexao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class ConexaoFactory {
+
+	
+	//Classe com uma função de fabricar a conexão
+	
+	//
+	
+	public Connection queroConexao(){
+		
+		DriverManager.getConnection("");
+		
+		return 
+		
+	}
+	
+	
+}

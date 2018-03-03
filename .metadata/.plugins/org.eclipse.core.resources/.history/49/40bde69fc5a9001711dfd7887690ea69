@@ -1,0 +1,21 @@
+package br.com.fiap.teste;
+
+import java.io.FileWriter;
+
+public class GravandoSeparado {
+
+	static String gravarArq(Produto p)throws Exception{
+		
+		
+		FileWriter arquivo = new FileWriter("D:\\Arquivo\\Divido.txt");
+		
+		return "Gravado";
+		
+	}
+	
+	public static void main(String[] args) {
+		
+
+	}
+
+}

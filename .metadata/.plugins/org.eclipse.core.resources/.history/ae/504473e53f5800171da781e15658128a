@@ -1,0 +1,10 @@
+package br.com.fiap.TESTE_DAO;
+
+public class TesteProduto_DAO_CONSULTAR_TODOS {
+
+	public static void main(String[] args)throws Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+}

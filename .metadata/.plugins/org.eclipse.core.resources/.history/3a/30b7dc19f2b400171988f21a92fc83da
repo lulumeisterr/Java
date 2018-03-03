@@ -1,0 +1,70 @@
+package br.com.fiap.teste;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+
+import br.com.fiap.bean.Curso;
+import br.com.fiap.bean.Disciplina;
+import br.com.fiap.dao.CursoDAO;
+
+
+public class Teste {
+
+	static int fk_curso = 0;
+	static int verifica;
+
+	public static void main(String[] args) {
+
+
+		Curso c = new Curso();
+		Disciplina d = new Disciplina();
+		CursoDAO cDAO = null;
+
+		verifica = Integer.parseInt(JOptionPane.showInputDialog("Deseja verificar se ja existe um Curso ?" + " Digite 99"));
+				
+		
+		if(verifica == 0){
+
+			c.setCd_curso(1);
+			c.setDs_titulacao("ADS");
+			c.setNm_curso("Analise");
+			c.setVl_curso(12);
+
+			List<Disciplina> lista = new ArrayList<>();
+			d.setCd_displicina(1);
+			d.setNm_disciplina("Java");
+			d.setQt_cargahoraria(30);
+			fk_curso = 1;
+
+			c.setListaDiscplina(lista);
+
+		}else{
+			if(verifica == 1){
+
+				d.setCd_displicina(1);
+				d.setNm_disciplina("Java");
+				d.setQt_cargahoraria(30);
+				fk_curso = 1;
+
+			}
+
+			try{
+
+				cDAO = new CursoDAO();
+				System.out.println(cDAO.gravarCurso(c, d, fk_curso, verifica));
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				try{
+					cDAO.fechar();
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			}
+
+		}
+
+	}
+}

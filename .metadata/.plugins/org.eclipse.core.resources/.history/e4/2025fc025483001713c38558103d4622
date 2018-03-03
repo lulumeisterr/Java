@@ -1,0 +1,26 @@
+package br.com.fiap.teste;
+
+import br.com.fiap.DAO.ProdutoDAO;
+
+public class TESTANDO_COM_ARRAYLIST_CLIENTE {
+
+	public static void main(String[] args) {
+		
+		ProdutoDAO dao = null;
+		
+		try{
+			dao = new ProdutoDAO();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			try{
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+}

@@ -1,0 +1,62 @@
+package br.com.fiap.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.fiap.bean.Disciplina;
+import br.com.fiap.conexao.ConexaoFactory;
+
+public class DisciplinaDAO {
+	
+	private Connection conexao;
+	
+	
+	public DisciplinaDAO()throws Exception{
+		conexao = new ConexaoFactory().connectar();
+	}
+	
+	public String fechar()throws Exception{
+		conexao.close();
+		return "Fechou";
+	}
+	
+	
+	/*
+	 * Crie na classe DisciplinaDAO, crie um método chamado getAll(), 
+	 * que deverá receber uma String (nome do curso), e 
+	 * então deverá retornar todas as disciplinas, deste 
+	 * curso. Este método deverá  retornar uma lista de disciplinas.
+
+	 */
+	
+	public List<Disciplina> getAll(String nm_curso)throws Exception{
+		
+		List<Disciplina> lista = new ArrayList<>();
+		
+		Disciplina d = new Disciplina();
+		
+		PreparedStatement estrutura = conexao.prepareStatement("SELECT  "
+				+ "C.NM_CURSO , "
+				+ "D.NM_DISCIPLINA , "
+				+ "D.QT_CARGAHORARIA  "
+				+ "FROM TB_EXER_CURSO C INNER JOIN  TB_EXER_DISCIPLINA D "
+				+ "ON (C.CD_CURSO = D.CD_CURSO) "
+				+ "WHERE NM_CURSO = ?");
+		
+		estrutura.setString(1, nm_curso);
+		
+		ResultSet rs = estrutura.executeQuery();
+		
+		if(rs.next()){
+			
+			
+			
+		}
+		
+	}
+	
+
+}

@@ -1,0 +1,22 @@
+package br.com.fiap.test;
+
+import br.com.fiap.bean.Cargo;
+
+public class InterfaceMap {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Cargo cargo1 = new("Estagiario","Alto",2500);
+		Cargo cargo2 = new("Junior","Medio",2000);
+		
+		
+		Map<String, Cargo> CargosMap = new HashMap<String, Cargo>();
+		
+		//Adicionando
+		CargosMap.put("1", cargo1);
+		CargosMap.put("2", cargo2);
+		
+	}
+
+}

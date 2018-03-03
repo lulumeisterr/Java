@@ -1,0 +1,38 @@
+package br.com.fiap.BO;
+
+import br.com.fiap.DAO.ClienteDAO;
+import br.com.fiap.bean.Cliente;
+
+public class ClienteBO {
+	
+	
+	//Criando um metodo para Verificar a quantidade 
+	//de estrela
+	
+	public String novoCliente(Cliente objC)throws Exception{
+		
+		if(objC.getQtdEstrelas() <1 || objC.getQtdEstrelas()>5){
+			
+			//return throws new RuntimeException();
+				return "Quantidade de estrela invalida";
+			//throws RuntimeException(); Derruba a aplicação
+		}
+		
+		
+		if(objC.getNome().length()>50){
+			return "Nome invalido Maior 50 Caracter";
+		}
+		
+		if(objC.getNumero() < 0){
+			return "Número invalido";
+		}
+		
+		ClienteDAO dao = new ClienteDAO();
+		String msg = dao.Inserir(objC);
+		dao.fecharConexao();
+		return msg;
+		
+	}
+	
+
+}

@@ -1,0 +1,13 @@
+package br.com.fiap.conexao;
+
+import java.sql.Connection;
+
+public class ConexaoFactory {
+
+	public static Connection connectar(){
+		
+		
+		
+	}
+
+}

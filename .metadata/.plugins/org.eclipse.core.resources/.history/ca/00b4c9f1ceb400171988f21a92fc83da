@@ -1,0 +1,29 @@
+package br.com.fiap.conexao;
+
+import java.sql.Connection;
+
+import br.com.fiap.excecao.Excecao;
+
+public class TesteConexao {
+
+	public static void main(String[] args) {
+	
+		Connection c = null;
+
+		try{
+			c = new ConexaoFactory().connectar();
+			System.out.println("Abriu");
+			
+		}catch(Exception e){
+			Excecao.Ex(e);
+		}finally{
+			try{
+				c.close();
+			}catch(Exception e){
+				Excecao.Ex(e);
+			}
+		}
+		
+	}
+
+}

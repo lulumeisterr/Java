@@ -1,0 +1,56 @@
+package br.com.fiap.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import br.com.fiap.bean.Curso;
+import br.com.fiap.bean.Disciplina;
+import br.com.fiap.conexao.ConexaoFactory;
+
+public class CursoDAO {
+
+	private Connection conexao;
+	
+	public CursoDAO()throws Exception{
+		conexao = new ConexaoFactory().connectar();
+	}
+	
+	public String fechar()throws Exception{
+		conexao.close();
+		return "Fechou";
+	}
+	
+	
+	public Curso getCurso(String nm_curso)throws Exception{
+		Curso c = new Curso();
+		return c;
+		
+	}
+	
+	public String gravarCurso(Curso c)throws Exception{
+		
+			PreparedStatement stmt = conexao.prepareStatement("SELECT * FROM TB_EXER_CURSO WHERE CD_CURSO = ?");
+			stmt.setInt(1, c.getCd_curso());
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()){
+				
+				if(rs.getInt("CD_CURSO") == 0){
+					System.out.println("Curso Não existente");
+				}else{
+					System.out.println("Codigo do curso : " + rs.getInt("CD_CURSO") + " Existente");
+					int verifica = 1;
+				}
+				
+			}
+			
+			rs.close();
+			stmt.execute();
+			stmt.close();
+				
+			return "Verificação";
+	}
+	
+}

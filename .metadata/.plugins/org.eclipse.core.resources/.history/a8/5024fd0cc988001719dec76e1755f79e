@@ -1,0 +1,17 @@
+package br.com.fiap.BO;
+
+public class ProdutoBO {
+	
+	
+	//Adicionando um novo produto
+	
+	public static String novoProduto(Produto p)throws Exception{
+		
+		
+		
+		
+		
+	}
+	
+
+}

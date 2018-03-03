@@ -1,0 +1,98 @@
+package br.com.fiap.BO;
+
+import java.util.List;
+
+import br.com.fiap.DAO.ClienteDAO;
+import br.com.fiap.bean.Cliente;
+
+public class ClienteBO {
+
+	//nunca tem atributo em BO
+	//Ele nao pode depender de metodos
+
+	//Todo metodo BO é STATIC - Pois ele é independende executa por si só
+	// Quando não é statico , Não esta seguindo a orientação ob
+
+
+	//Criando um metodo para Verificar a quantidade 
+	//de estrela
+
+	public static String novoCliente(Cliente objC)throws Exception{
+
+		if(objC.getQtdEstrelas() <1 || objC.getQtdEstrelas()>5){
+
+			//return throws new RuntimeException();
+			return "Quantidade de estrela invalida";
+			//throws RuntimeException(); Derruba a aplicação
+		}
+
+
+		if(objC.getNome().length()>50){
+			return "Nome invalido Maior 50 Caracter";
+		}
+
+		if(objC.getNumero() < 0){
+			return "Número invalido";
+		}
+
+		//Testa
+		//Abre a conexao
+		//Inseri 
+		//Fecha
+
+		ClienteDAO dao = new ClienteDAO();
+		String msg = dao.Inserir(objC);
+		dao.fecharConexao();
+		return msg;
+
+	}
+
+	public static Cliente consultarPorCodigo(int n)throws Exception{
+
+		ClienteDAO dao = new ClienteDAO(); 
+		//Armazeno Ele em uma variavel
+		Cliente c = dao.retornandoUM_CLIENTE(n);
+		dao.fecharConexao();
+
+		return c;
+	}
+
+	//Apagando por nome
+
+	public static int novoDeleteNome(String pNome)throws Exception{
+
+		int p = Integer.parseInt("Nome maior que 12 caracter");
+		
+		if(pNome.trim().length() < 12){
+			return p;
+		}
+
+		ClienteDAO dao = new ClienteDAO();
+		int  n  = dao.DELETANDO_NAME(pNome);
+		dao.fecharConexao();	
+		return n;
+	}
+
+
+	//AumentarEstrela
+	public static String aumentarEstrelas(int n)throws Exception{
+		
+		ClienteDAO dao = new ClienteDAO();
+		//Verificando se o usuario digite 1 numero > que a quantidade pedida na regra
+		Cliente obj = dao.retornandoUM_CLIENTE(n);
+		if(obj.getQtdEstrelas() >= 5){
+			return "Limite alcançado";
+		}
+		
+		
+		String m = dao.AUMENTANDO_ESTRELA(n);
+		dao.fecharConexao();	
+		return m;
+		
+	}
+	
+	//Consultando por nivel
+
+
+
+}

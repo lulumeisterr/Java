@@ -1,0 +1,33 @@
+package br.com.fiap.DAO;
+
+import java.sql.Connection;
+
+import br.com.fiap.bean.Telefone;
+import br.com.fiap.conexao.ConexaoFactory;
+
+public class TelefoneDAO {
+
+	private Connection con;
+
+	public TelefoneDAO()throws Exception{
+
+		con = new ConexaoFactory().conectar();
+	}
+
+	public void fechar()throws Exception{
+
+		con.close();
+	}
+
+
+	public String inserir(Telefone t)throws Exception{
+		
+		
+		
+		
+		return "Adicionado";
+		
+	}
+
+
+}
